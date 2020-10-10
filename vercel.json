@@ -1,0 +1,10 @@
+{
+  "env": {
+    "OPENWEATHER_API": "@openweather_api"
+  },
+  "build": {
+    "env": {
+      "OPENWEATHER_API": "@openweather_api"
+    }
+  }
+}

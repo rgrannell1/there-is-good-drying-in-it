@@ -4,8 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "deploy": "npm run compile; npx vercel",
+    "compile": "cd site && npm run build && cd -",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/node": "^1.8.4",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "vercel": "^20.1.2"
+  }
 }
