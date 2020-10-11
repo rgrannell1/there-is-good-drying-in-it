@@ -27,7 +27,12 @@ export default async (req: NowRequest, res: NowResponse) => {
 
   const weatherRes = await fetch(getWeatherUrl(body.lon, body.lat, API_KEY))
   const content = await weatherRes.json()
+
+  console.log(`INFO: ${JSON.stringify(content, null, 2)}`)
+
   const outBody = JSON.stringify(determineWeather(content))
+
+  console.log(`INFO: ${outBody}`)
 
   res.status(200).send(outBody)
 }

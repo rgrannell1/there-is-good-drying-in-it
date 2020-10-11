@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "npm run compile; npx vercel",
-    "compile": "cd site && npm run build && cd -",
+    "deploy": "npx vercel",
+    "build": "sh scripts/build-project.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
