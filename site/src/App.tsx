@@ -2,23 +2,14 @@
 import React from 'react'
 import './App.css'
 
-enum WeatherState {
-  Dry,
-  FierceMild,
-  Wet
-}
-
-interface LocationData {
-
-}
-
-interface AppState {
-  location?: LocationData
-  mode: WeatherState
-}
+import {
+  AppState,
+  LocationData,
+  WeatherState
+} from './types'
 
 const dryContent = () => {
-  return <p>There's fierce dryin' in it</p>
+  return <p>There's good dryin' in it</p>
 }
 
 const fierceMildContent = () => {
@@ -29,6 +20,31 @@ const wetContent = () => {
   return <p>Day for the ducks</p>
 }
 
+const getWeatherData = async (location:LocationData) => {
+  try {
+    var response = await fetch('/api/weather', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(location)
+    })
+  } catch (err) {
+    console.error(err)
+    return
+  }
+
+  try {
+    const data = await response.json()
+  } catch (err) {
+    console.error('failed to parse response as JSON')
+    return
+  }
+
+  return {
+
+  }
+}
 
 export default class App extends React.Component<{}, AppState> {
   constructor (props:any) {
@@ -39,11 +55,15 @@ export default class App extends React.Component<{}, AppState> {
     }
   }
   async componentDidMount () {
-    try {
-      const response = await fetch('/api/weather')
-      console.log(response)
-    } catch (err) {
-      console.error(err) // TODO
+    const location:LocationData = {
+      lon: +53.3331,
+      lat: -6.2489
+    }
+
+    const data = await getWeatherData(location)
+
+    if (typeof data !== 'undefined') {
+
     }
   }
   render () {
